@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .task{
+            text-align: center;}
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/entry/server" method="post">
+    <div class="task">
+        <table>
+            <tr>
+                <td> NAME OF PRODUCT :
+                    <input type="text" name="medicine"></td>
+                <td> <label>PRICE :</label>
+                    <input type="text" name="price"></td>
+                <td><label >EXPIRY DATE :</label>
+                    <input type="date" name="date" > </td>
+                <td><label >DESCRIPTION :</label>
+                    <input type="text" name="description"></td>
+            </tr>
+        </table>
+        <% if (errors.length > 0) { %>
+            <div class="error-message">
+                <%= errors[0].msg %>
+            </div>
+        <% } %>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+</body>
+</html>

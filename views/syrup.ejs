@@ -1,0 +1,29 @@
+
+
+
+  <h1>Medicine List</h1>
+
+
+  <% if (data.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>price</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(syrup => { %>
+          <tr>
+            <td><%= syrup.medicine%></td>
+            <td><%= syrup.price%></td>
+            <td><%= syrup.description %></td>
+            <td><%= syrup.date %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No Products found.</p>
+  <% } %>

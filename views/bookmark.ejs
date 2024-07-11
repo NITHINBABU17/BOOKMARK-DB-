@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookmarks</title>
+</head>
+<body>
+    <p><a href="/">BACK TO HOME</a></p>
+    <h1>Bookmarks</h1>
+    <form action="/bookmark/createproduct" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url">
+        <button type="submit">Add Bookmark</button>
+    </form>
+    
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } %>
+
+    <% if (errors && errors.length > 0) { %>
+        <ul>
+            <% errors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+            <% }); %>
+        </ul>
+    <% } %>
+</body>
+</html>

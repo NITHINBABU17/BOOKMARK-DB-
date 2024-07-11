@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <p><a href="/">BACK TO HOME</a></p>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <% if (pagination.prevPage) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/urllist?page=<%= pagination.prevPage %>">Previous</a>
+                    </li>
+                <% } %>
+                <% for (let i = 1; i <= pagination.totalPages; i++) { %>
+                    <li class="page-item <%= i === pagination.page ? 'active' : '' %>">
+                        <a class="page-link" href="/urllist?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <% if (pagination.nextPage) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/urllist?page=<%= pagination.nextPage %>">Next</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+        <h1>Bookmark List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>Date Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (data.length > 0) { %>
+                    <% data.forEach(bookmark => { %>
+                        <tr>
+                            <td><%= bookmark.title %></td>
+                            <td><%= bookmark.url %></td>
+                            <td><%= bookmark.createdAt.toLocaleString() %></td>
+                            <td>
+                                <a href="/urlupdate/update/<%= bookmark._id %>" class="btn btn-primary">Edit</a>
+                                <form action="/urlupdate/delete/<%= bookmark._id %>" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                      
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4">No bookmarks found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        
+
+        
+    </div>
+</body>
+</html>
